@@ -52,7 +52,7 @@ analyzeBtn.onclick = async () => {
   showMessage("Menganalisis URL...");
 
   try {
-    const res = await fetch(`${API}/analyze`, {
+    const res = await fetch(`${API}/api/download`, {
       method: "POST",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({url})
