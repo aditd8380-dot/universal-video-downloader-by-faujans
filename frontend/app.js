@@ -106,7 +106,7 @@ downloadBtn.onclick = async () => {
   statusText.textContent = "Creating job...";
 
   try {
-    const res = await fetch(`${API}/api/download`, {
+    const res = await fetch(`${API}/download`, {
       method: "POST",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({
@@ -128,7 +128,7 @@ downloadBtn.onclick = async () => {
 async function pollJob(jobId) {
   const timer = setInterval(async () => {
     try {
-      const res = await fetch(`${API}/api/download/${jobId}`);
+      const res = await fetch(`${API}/download/${jobId}`);
       const data = await res.json();
 
       bar.style.width = `${data.progress || 0}%`;
@@ -140,7 +140,7 @@ async function pollJob(jobId) {
         bar.style.width = "100%";
         percent.textContent = "100%";
         statusText.textContent = "Completed";
-        fileBtn.href = `${API}/api/download/${jobId}/file`;
+        fileBtn.href = `${API}/download/${jobId}/file`;
         fileBtn.classList.remove("hidden");
         showMessage("Video selesai diproses.");
         resetDownloadUI(false);
@@ -162,7 +162,7 @@ async function pollJob(jobId) {
 cancelBtn.onclick = async () => {
   if (!currentJob) return;
   try {
-    await fetch(`${API}/api/download/${currentJob}/cancel`, {method:"POST"});
+    await fetch(`${API}/download/${currentJob}/cancel`, {method:"POST"});
   } finally {
     resetDownloadUI();
     showMessage("Permintaan pembatalan dikirim.");
