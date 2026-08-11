@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Video Downloader</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">UV<span>Downloader</span></div>
+    <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">☀️</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="badge">TikTok • Instagram • YouTube</div>
+      <h1>Download video dengan kualitas terbaik yang tersedia.</h1>
+      <p>Masukkan URL video publik. Sistem akan menganalisis format dan resolusi yang tersedia dari sumber.</p>
+
+      <div class="input-row">
+        <input id="urlInput" type="url" placeholder="Paste video URL di sini..." autocomplete="off">
+        <button id="analyzeBtn" class="primary">Analyze</button>
+      </div>
+
+      <p id="message" class="message"></p>
+    </section>
+
+    <section id="result" class="card hidden">
+      <div class="media">
+        <img id="thumb" alt="Thumbnail video">
+      </div>
+      <div class="details">
+        <span id="platform" class="platform"></span>
+        <h2 id="title">Video</h2>
+        <p id="uploader"></p>
+        <p id="duration"></p>
+
+        <div class="selectors">
+          <label>
+            Quality
+            <select id="quality"></select>
+          </label>
+          <label>
+            Format
+            <select id="format">
+              <option value="mp4">MP4</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="downloadBtn" class="primary full">Download</button>
+        <button id="cancelBtn" class="secondary full hidden">Cancel</button>
+
+        <div id="progressWrap" class="progress-wrap hidden">
+          <div class="progress-top">
+            <span id="statusText">Preparing...</span>
+            <span id="percent">0%</span>
+          </div>
+          <div class="progress"><div id="bar"></div></div>
+        </div>
+
+        <a id="fileBtn" class="download-link hidden" href="#">⬇ Download file</a>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="mini-card"><b>Best quality</b><span>Memilih resolusi tertinggi yang benar-benar tersedia.</span></article>
+      <article class="mini-card"><b>Responsive</b><span>Dirancang untuk HP, tablet, dan desktop.</span></article>
+      <article class="mini-card"><b>Honest quality</b><span>Tidak mengubah video 720p menjadi “4K palsu”.</span></article>
+    </section>
+
+    <footer>
+      Gunakan hanya untuk konten yang boleh Anda unduh. Jangan gunakan untuk membypass DRM, login privat, paywall, atau sistem keamanan platform.
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
