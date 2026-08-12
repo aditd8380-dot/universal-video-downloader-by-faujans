@@ -355,34 +355,3 @@ async def cancel_download(job_id: str):
     return {"success": True}
 
 
-app = FastAPI(title="Universal Video Downloader", version="1.0.0")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-@app.post("/api/download")
-async def download_video(req: DownloadRequest):
-    filename = f"{uuid.uuid4()}.mp4"
-    output_path = OUTPUT_DIR / filename
-
-    ydl_opts = {
-        'format': 'best',
-        'outtmpl': str(output_path),
-        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    }
-
-    try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([str(req.url)])
-
-        return FileResponse(
-            path=output_path, 
-            filename="video.mp4", 
-            media_type="video/mp4"
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
