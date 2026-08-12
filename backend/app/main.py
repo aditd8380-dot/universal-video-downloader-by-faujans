@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 import yt_dlp
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
-
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, HttpUrl
 
@@ -355,6 +355,10 @@ async def cancel_download(job_id: str):
     job.status = "CANCELLED"
     job.message = "Cancellation requested."
     return {"success": True}
+
+from fastapi.staticfiles import StaticFiles
+
+app.mount("/", StaticFiles(directory=str(BASE_DIR / "frontend"), html=True), name="frontend")
 
 
 
